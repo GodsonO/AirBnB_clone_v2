@@ -8,6 +8,9 @@ from sqlalchemy import String
 from sqlalchemy.orm import relationship
 
 
+storage_hbnb = getenv("HBNB_TYPE_STORAGE")
+
+
 class City(BaseModel, Base):
     """Represents a city for a MySQL database.
 
@@ -18,7 +21,12 @@ class City(BaseModel, Base):
         name (sqlalchemy String): The name of the City.
         state_id (sqlalchemy String): The state id of the City.
     """
-    __tablename__ = "cities"
-    name = Column(String(128), nullable=False)
-    state_id = Column(String(60), ForeignKey("states.id"), nullable=False)
-    places = relationship("Place", backref="cities", cascade="delete")
+    __tablename__ = 'cities'
+    if storage_hbnb == 'db':
+        name = Column(String(128), nullable=False)
+        state_id = Column(String(60), ForeignKey('states.id'), nullable=False)
+        places = relationship("Place", backref="cities",
+                              cascade="all, delete-orphan")
+    else:
+        name = ""
+        state_id = ""
