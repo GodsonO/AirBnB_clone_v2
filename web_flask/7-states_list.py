@@ -1,6 +1,5 @@
 #!/usr/bin/python3
-"""Start web application with two routings
-"""
+"""Start web application"""
 
 from models import storage
 from models.state import State
@@ -10,7 +9,7 @@ app = Flask(__name__)
 
 @app.route('/states_list')
 def states_list():
-    """Render template with states
+    """use storage for fetching data from the storage engine
     """
     path = '7-states_list.html'
     states = storage.all(State)

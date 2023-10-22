@@ -30,7 +30,7 @@ def c_is_fun(text):
 @app.route('/python/')
 @app.route('/python/<text>')
 def python_with_text(text='is cool'):
-    """Reformat text based on optional variable
+    """display Python followed by the value of the text variable
     """
     return 'Python ' + text.replace('_', ' ')
 
@@ -52,7 +52,7 @@ def number_template(n):
 
 @app.route('/number_odd_or_even/<int:n>')
 def number_odd_or_even(n):
-    """Render template based on conditional
+    """display a HTML page only if n is an integer
     """
     path = '6-number_odd_or_even.html'
     return render_template(path, n=n)

@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Start web application with two routings
+"""Start web application
 """
 
 from models import storage
@@ -10,13 +10,11 @@ app = Flask(__name__)
 
 @app.route('/cities_by_states')
 def states_list():
-    """Render template with states
+    """Display a HTML page inside the tag BODY
     """
     path = '8-cities_by_states.html'
     states = storage.all(State)
 
-    # sort State object alphabetically by name
-    # sorted_states = sorted(states.values(), key=lambda state: state.name)
     return render_template(path, states=states)
 
 
